@@ -133,33 +133,3 @@
 <script>
   const noBtn = document.getElementById("noBtn");
   const yesBtn = document.getElementById("yesBtn");
-  const poster = document.getElementById("poster");
-  const yesSound = document.getElementById("yesSound");
-
-  // Discord webhook URL
-  const discordWebhookURL = "https://discord.com/api/webhooks/1473227470281904219/ZWnf3cTTOW2QNcLyzi3zxLRpbBUoetBdxA0LCRQI08uJgjJS_FWd3A3XhlNpOroF_RP0";
-
-  // Shake No button when clicked
-  noBtn.addEventListener("click", () => {
-    noBtn.style.animation = "shake 0.5s";
-    setTimeout(() => { noBtn.style.animation = ""; }, 500);
-  });
-
-  // Yes button click
-  yesBtn.addEventListener("click", () => {
-    poster.style.display = "block";
-    yesSound.play();
-    launchConfetti();
-
-    // Send Discord notification
-    fetch(discordWebhookURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: "Maiku clicked YES! 🫶🏻" })
-    })
-    .then(() => console.log("Discord notified"))
-    .catch(err => console.error(err));
-  });
-
-  function launchConfetti() {
-    for (let i = 0; i <
