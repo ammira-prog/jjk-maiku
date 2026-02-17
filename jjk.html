@@ -5,7 +5,18 @@
   <title>WATCH JJK WITH ME?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {margin:0;height:100vh;background:black;color:white;font-family:'Segoe UI',Arial,sans-serif;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden;}
+    body {
+      margin:0;
+      height:100vh;
+      background:black;
+      color:white;
+      font-family:'Segoe UI',Arial,sans-serif;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+    }
     
     h1 {
       font-size:28px;
@@ -48,18 +59,47 @@
 
     #yesBtn {left:20%;top:40px;}
 
-    #poster {display:none;margin-top:25px;text-align:center;animation:fadeIn 1s ease forwards;}
-    #poster img {width:220px;border-radius:12px;box-shadow:0 0 25px rgba(255,0,0,0.7);}
-    #poster h2 {margin-bottom:10px;color:#ff3b3b;font-size:18px;}
+    #poster {
+      display:none;
+      margin-top:25px;
+      text-align:center;
+      animation:fadeIn 1s ease forwards;
+    }
 
-    @keyframes fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-    .confetti {position:fixed;width:10px;height:10px;top:-10px;animation:fall linear forwards;z-index:999;}
-    @keyframes fall {to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
+    #poster img {
+      width:220px;
+      border-radius:12px;
+      box-shadow:0 0 25px rgba(255,0,0,0.7);
+    }
+
+    #poster h2 {
+      margin-bottom:10px;
+      color:#ff3b3b;
+      font-size:18px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity:0;transform:translateY(10px);}
+      to {opacity:1;transform:translateY(0);}
+    }
+
+    .confetti {
+      position:fixed;
+      width:10px;
+      height:10px;
+      top:-10px;
+      animation:fall linear forwards;
+      z-index:999;
+    }
+
+    @keyframes fall {
+      to {transform:translateY(110vh) rotate(720deg);opacity:0;}
+    }
   </style>
 </head>
 <body>
 
-<h1>MAIKU, WANNA WATCH JJK S3 WITH ME? 🥰</h1>
+<h1>MAIKU, WANNA WATCH JJK S3 WITH ME?</h1>
 <p>You can say no, but Mira pie says otherwise 🤭</p>
 
 <div id="buttons">
@@ -82,17 +122,14 @@
   const poster = document.getElementById("poster");
   const yesSound = document.getElementById("yesSound");
 
-  // Restrict No button movement so it won't overlap Yes button
+  // Move NO button only vertically (top/bottom), left position fixed
+  const noBtnLeft = 60; // %
+  noBtn.style.left = noBtnLeft + "%";
+
   noBtn.addEventListener("mouseover", () => {
-    const maxX = 60; // max % from left
-    const maxY = 100; // max px from top
-    const minX = 40; // min % from left to avoid overlapping Yes
-    const minY = 0;
-
-    const x = Math.random() * (maxX - minX) + minX;
+    const maxY = 100; // max px down
+    const minY = 0;   // min px from top
     const y = Math.random() * (maxY - minY) + minY;
-
-    noBtn.style.left = x + "%";
     noBtn.style.top = y + "px";
   });
 
@@ -111,9 +148,3 @@
       confetti.style.background=Math.random()>0.5?"red":"white";
       document.body.appendChild(confetti);
       setTimeout(()=>{confetti.remove();},4000);
-    }
-  }
-</script>
-
-</body>
-</html>
